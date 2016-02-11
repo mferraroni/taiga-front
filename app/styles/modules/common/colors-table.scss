@@ -136,5 +136,14 @@
             }
         }
     }
+    .gu-mirror {
+        background: lighten($primary, 60%);
+        opacity: 1;
+    }
+    .gu-transit {
+        * {
+            visibility: hidden;
+        }
+    }
 
 }

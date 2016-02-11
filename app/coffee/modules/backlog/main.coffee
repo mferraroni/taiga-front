@@ -415,17 +415,15 @@ class BacklogController extends mixOf(taiga.Controller, taiga.PageMixin, taiga.F
         # From backlog to sprint
         if oldSprintId == null
             us.milestone = newSprintId for us in usList
+            args = [newUsIndex, 0].concat(usList)
 
-            @scope.$apply =>
-                args = [newUsIndex, 0].concat(usList)
+            # Add moving us to sprint user stories list
+            Array.prototype.splice.apply(newSprint.user_stories, args)
 
-                # Add moving us to sprint user stories list
-                Array.prototype.splice.apply(newSprint.user_stories, args)
-
-                # Remove moving us from backlog userstories lists.
-                for us, key in usList
-                    r = @scope.userstories.indexOf(us)
-                    @scope.userstories.splice(r, 1)
+            # Remove moving us from backlog userstories lists.
+            for us, key in usList
+                r = @scope.userstories.indexOf(us)
+                @scope.userstories.splice(r, 1)
 
         # From sprint to sprint
         else
@@ -442,11 +440,11 @@ class BacklogController extends mixOf(taiga.Controller, taiga.PageMixin, taiga.F
                     r = sprint.user_stories.indexOf(us)
                     sprint.user_stories.splice(r, 1)
 
-        # Persist the milestone change of userstory
+        #Persist the milestone change of userstory
         promises = _.map usList, (us) => @repo.save(us)
 
-        # Rehash userstories order field
-        # and persist in bulk all changes.
+        #Rehash userstories order field
+        #and persist in bulk all changes.
         promise = @q.all(promises).then =>
             items = @.resortUserStories(newSprint.user_stories, "sprint_order")
             data = @.prepareBulkUpdateData(items, "sprint_order")
@@ -806,8 +804,6 @@ BacklogDirective = ($repo, $rootscope, $translate) ->
         linkToolbar($scope, $el, $attrs, $ctrl)
         linkFilters($scope, $el, $attrs, $ctrl)
         linkDoomLine($scope, $el, $attrs, $ctrl)
-
-        $el.find(".backlog-table-body").disableSelection()
 
         filters = $ctrl.getUrlFilters()
         if filters.status ||
