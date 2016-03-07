@@ -158,7 +158,7 @@
             text-align: left;
             width: 100%;
             &:hover {
-                background: lighten($gray-light, 12%);
+                background: rgba($gray-light, .2);
                 cursor: move;
                 transition: background .2s ease-in;
             }
