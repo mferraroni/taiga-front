@@ -545,6 +545,75 @@ gulp.task("delete-tmp", function() {
     del.sync(paths.tmp);
 });
 
+gulp.task("purify-css", function() {
+    var css = require('css');
+    var fs = require('fs');
+    var glob = require('glob');
+
+    var content = fs.readFileSync(paths.distVersion + "styles/theme-taiga.css", "utf8");
+    var ast = css.parse(content, {});
+
+    var valids = [];
+
+    for(var i = 0; i < ast.stylesheet.rules.length; i++) {
+        if (ast.stylesheet.rules[i].selectors) {
+            for(var z = 0; z < ast.stylesheet.rules[i].selectors.length; z++) {
+                var selectors = ast.stylesheet.rules[i].selectors[z].split(" ");
+
+                for(var b = 0; b < selectors.length; b++) {
+                    var valid = false;
+
+                    if (selectors[b].slice(0, 2) === 'tg') {
+                        valid = true;
+                    } else if (selectors[b][0] === '.') {
+                        valid = true;
+                    }
+
+                    if(valid && valids.indexOf(selectors[b]) === -1) {
+                        valids.push(selectors[b]);
+                    }
+                }
+            }
+        }
+    }
+
+    glob([
+        paths.tmp + "**/*.html",
+        paths.distVersion + "js/app.js"
+    ], {}, function (er, files) {
+        var invalid = [];
+
+        for(var z = 0; z < valids.length; z++) {
+            var finded = false;
+
+            for(var i = 0; i < files.length; i++) {
+                var content = fs.readFileSync(files[i], "utf8");
+
+                var ext = files[i].split(".")[1];
+
+                var pattern = valids[z];
+                if (ext === 'html') {
+                    pattern = valids[z].slice(1);
+                }
+
+                console.log(ext);
+                console.log(pattern);
+
+                if(content.indexOf(pattern) !== -1) {
+                    finded = true;
+                    break;
+                }
+            }
+
+            if (!finded) {
+                invalid.push(valids[z]);
+            }
+        }
+
+        console.log(invalid);
+    });
+});
+
 gulp.task("express", function() {
     var express = require("express");
     var compression = require('compression');
