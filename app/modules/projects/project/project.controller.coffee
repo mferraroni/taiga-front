@@ -21,12 +21,15 @@ class ProjectController
     @.$inject = [
         "$routeParams",
         "tgAppMetaService",
+        "$location",
+        "$tgConfirm",
+        "$tgNavUrls",
         "$tgAuth",
         "$translate",
         "tgProjectService"
     ]
 
-    constructor: (@routeParams, @appMetaService, @auth, @translate, @projectService) ->
+    constructor: (@routeParams, @appMetaService, @location, @confirmService, @navUrls, @auth, @translate, @projectService) ->
         projectSlug = @routeParams.pslug
         @.user = @auth.userData
 
@@ -34,6 +37,24 @@ class ProjectController
         taiga.defineImmutableProperty @, "members", () => return @projectService.activeMembers
 
         @appMetaService.setfn @._setMeta.bind(this)
+
+    transferAccept: (token, reason) ->
+        @projectService.transferAccept(token, reason).success () =>
+            newUrl = @navUrls.resolve("project-admin-project-profile-details", {
+                project: @project.get("slug")
+            })
+            @location.path(newUrl)
+            #TODO: this text isn't shown
+            @confirmService.notify("success", @translate.instant("ADMIN.PROJECT_TRANSFER.ACCEPTED_PROJECT_OWNERNSHIP"), '', 5000)
+
+    transferReject: (token, reason) ->
+        @projectService.transferAccept(token, reason).success () =>
+            newUrl = @navUrls.resolve("project-admin-project-profile-details", {
+                project: @project.get("slug")
+            })
+            @location.path(newUrl)
+            #TODO: this text isn't shown
+            @confirmService.notify("success", @translate.instant("ADMIN.PROJECT_TRANSFER.REJECTED_PROJECT_OWNERNSHIP"), '', 5000)
 
     _setMeta: (project)->
         return null if !@.project

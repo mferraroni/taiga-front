@@ -1,0 +1,36 @@
+tg-transfer-project(ng-if="vm.project")
+    h1.project-block-title {{'ADMIN.PROJECT_TRANSFER.DO_YOU_ACCEPT_PROJECT_OWNERNSHIP' | translate}}
+
+    p {{::vm.project.get("name")}}
+    p {{::vm.project.get("is_private")}}
+    p {{::vm.project.get("members").size}}
+
+    p {{::vm.project.getIn(["owner", "full_name_display"])}}
+
+    div(ng-if="vm.canBeTransferred")
+        p
+            textarea(
+                name="reason"
+                ng-model="vm.reason"
+            )
+
+        p
+            a(ng-click="vm.transferAccept(vm.token, vm.reason)"
+              href="#"
+              title="{{'ADMIN.PROJECT_TRANSFER.ACCEPT' | translate}}"
+            ) {{'ADMIN.PROJECT_TRANSFER.ACCEPT' | translate}}
+
+        p
+            a(ng-click="vm.transferReject(vm.token, vm.reason)"
+              href="#"
+              title="{{'ADMIN.PROJECT_TRANSFER.REJECT' | translate}}"
+            ) {{'ADMIN.PROJECT_TRANSFER.REJECT' | translate}}
+
+    div(ng-if="!vm.canBeTransferred")
+        div(ng-if="vm.project.get('is_private') && !vm.canBePrivateProject.valid")
+            div(ng-if="vm.canBePrivateProject.reason == 'max_private_projects'") {{ 'ADMIN.PROJECT_TRANSFER.MAX_PRIVATE_PROJECTS' | translate }}
+            div(ng-if="vm.canBePrivateProject.reason == 'max_members_private_projects'") {{ 'ADMIN.PROJECT_TRANSFER.MAX_PRIVATE_PROJECTS_MEMBERS' | translate }}
+
+        div(ng-if="!vm.project.get('is_private') && !vm.canBePublicProject.valid")
+            div(ng-if="vm.canBePublicProject.reason == 'max_public_projects'") {{ 'ADMIN.PROJECT_TRANSFER.MAX_PUBLIC_PROJECTS' | translate }}
+            div(ng-if="vm.canBePublicProject.reason == 'max_members_public_projects'") {{ 'ADMIN.PROJECT_TRANSFER.MAX_PUBLIC_PROJECTS_MEMBERS' | translate }}

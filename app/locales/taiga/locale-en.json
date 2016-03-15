@@ -680,6 +680,13 @@
         },
         "SUBMENU_THIDPARTIES": {
             "TITLE": "Services"
+        },
+        "PROJECT_TRANSFER": {
+            "DO_YOU_ACCEPT_PROJECT_OWNERNSHIP": "Do you want to be the new project owner?",
+            "ACCEPTED_PROJECT_OWNERNSHIP": "OK. Now you are the new owner of the project.",
+            "REJECTED_PROJECT_OWNERNSHIP": "OK. We will contact with the owner",
+            "ACCEPT": "Accept",
+            "REJECT": "Reject"
         }
     },
     "USER": {

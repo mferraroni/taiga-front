@@ -140,7 +140,7 @@ class CurrentUserService
     canBePrivateProject: (projectId) ->
         project = @.projects.get('all').find (project) -> project.get('id') == projectId
 
-        return {valid: true} if project.get('is_private')
+        #return {valid: true} if project.get('is_private')
 
         result = @.canCreatePrivateProjects()
 
@@ -156,7 +156,7 @@ class CurrentUserService
     canBePublicProject: (projectId) ->
         project = @.projects.get('all').find (project) -> project.get('id') == projectId
 
-        return {valid: true} if !project.get('is_private')
+        #return {valid: true} if !project.get('is_private')
 
         result = @.canCreatePublicProjects()
 

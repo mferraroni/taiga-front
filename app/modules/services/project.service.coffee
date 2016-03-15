@@ -75,4 +75,11 @@ class ProjectService
 
         return @projectsService.getProjectBySlug(pslug).then (project) => @.setProject(project)
 
+    transferAccept: (token, reason) ->
+        return @projectsService.transferAccept(@.project.get("id"), token, reason)
+
+    transferReject: (token, reason) ->
+        return @projectsService.transferReject(@.project.get("id"), token, reason)
+
+
 angular.module("taigaCommon").service("tgProjectService", ProjectService)
