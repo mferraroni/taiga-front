@@ -68,11 +68,7 @@ class ProjectProfileController extends mixOf(taiga.Controller, taiga.PageMixin)
                      sectionName: sectionName, projectName: @scope.project.name})
             description = @scope.project.description
             @appMetaService.setAll(title, description)
-
-            @scope.canBePrivateProject = @.currentUserService.canBePrivateProject(@scope.project.id)
-            @scope.canBePublicProject = @.currentUserService.canBePublicProject(@scope.project.id)
             @scope.currentUser = @.currentUserService.getUser().toJS()
-
             @scope.isPrivateProject = @scope.project.is_private
 
         promise.then null, @.onInitialDataError.bind(@)

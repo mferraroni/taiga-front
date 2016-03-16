@@ -185,4 +185,22 @@ class CurrentUserService
 
         return {valid: true}
 
+    canOwnProject: (project) ->
+        user = @.getUser()
+        if project.get('is_private')
+            result = @.canCreatePrivateProjects()
+            return result if !result.valid
+
+            if project.get('total_memberships') > user.get('max_memberships_private_projects')
+                return {valid: false, reason: 'max_members_private_projects', type: 'private_project'}
+
+        else
+            result = @.canCreatePublicProjects()
+            return result if !result.valid
+
+            if project.get('total_memberships') > user.get('max_memberships_public_projects')
+                return {valid: false, reason: 'max_members_public_projects', type: 'public_project'}
+
+        return {valid: true}
+
 angular.module("taigaCommon").service("tgCurrentUserService", CurrentUserService)

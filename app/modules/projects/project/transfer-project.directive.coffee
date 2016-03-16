@@ -23,10 +23,7 @@ TransferProjectDirective = ($routeParams, $location, navUrls, authService, curre
         token = $routeParams.token
         isPrivate = ctrl.project.get("is_private")
         authService.refresh().then () ->
-            scope.vm.canBePrivateProject = currentUserService.canBePrivateProject(projectId)
-            scope.vm.canBePublicProject = currentUserService.canBePublicProject(projectId)
-            scope.vm.canBeTransferred = (isPrivate && scope.vm.canBePrivateProject.valid) ||
-                                        (!isPrivate && scope.vm.canBePublicProject.valid)
+            scope.vm.canBeOwnedByUser = currentUserService.canOwnProject(ctrl.project)
             scope.vm.token = token
             currentUser = currentUserService.getUser().toJS()
             console.log currentUser.max_members_private_projects
