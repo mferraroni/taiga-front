@@ -25,3 +25,15 @@ helper.editLogo = function() {
 helper.getLogoSrc = function() {
     return $('.image-container .image');
 };
+
+helper.requestOwnershipLb = function() {
+    return $('div[tg-lb-request-ownership]');
+};
+
+helper.requestOwnership = function() {
+    $('.request-ownership').click();
+};
+
+helper.acceptRequestOwnership = function() {
+    helper.requestOwnershipLb().$('.button-green').click();
+};

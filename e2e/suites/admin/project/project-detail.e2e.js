@@ -78,4 +78,12 @@ describe('project detail', function() {
 
         expect(src).to.contains('upload-image-test.png');
     });
+
+    it('request ownership', async function() {
+        adminHelper.requestOwnership();
+
+        await utils.lightbox.open(adminHelper.requestOwnershipLb());
+
+        expect(utils.notifications.success.open()).to.be.eventually.true;
+    });
 });
