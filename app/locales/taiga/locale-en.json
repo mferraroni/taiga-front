@@ -692,7 +692,10 @@
             "ACCEPTED_PROJECT_OWNERNSHIP": "OK. Now you are the new owner of the project.",
             "REJECTED_PROJECT_OWNERNSHIP": "OK. We will contact with the owner",
             "ACCEPT": "Accept",
-            "REJECT": "Reject"
+            "REJECT": "Reject",
+            "PROPOSE_OWNERSHIP": "<strong>{{owner}}</strong>, the current owner of the project <strong>{{project}}</strong> wants you to be the new owner of the project",
+            "ADD_COMMENT": "Add a comment:",
+            "OWNER_DATA": "You can own up to <strong>{{maxPrivateProjects}}</strong> private projects and unlimited public projects. Always with a limit of <strong>{{maxMembers}}</strong> per project"
         }
     },
     "USER": {

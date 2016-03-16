@@ -28,6 +28,11 @@ TransferProjectDirective = ($routeParams, $location, navUrls, authService, curre
             scope.vm.canBeTransferred = (isPrivate && scope.vm.canBePrivateProject.valid) ||
                                         (!isPrivate && scope.vm.canBePublicProject.valid)
             scope.vm.token = token
+            currentUser = currentUserService.getUser().toJS()
+            console.log currentUser.max_members_private_projects
+            scope.vm.maxPrivateProjects = currentUser.max_private_projects
+            # scope.vm.maxPublicProjects = currentUser.max_public_projects
+            scope.vm.maxMembers = currentUser.max_members_private_projects
 
         projectsService.transferValidateToken(projectId, token).error (data, status) ->
             $location.path(navUrls.resolve("not-found"))
