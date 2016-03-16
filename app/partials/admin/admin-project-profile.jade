@@ -78,6 +78,13 @@ div.wrapper(
                         ng-model="project.tags"
                     )
 
+                fieldset(ng-if="project.owner.id && currentUser.id")
+                    tg-admin-project-request-ownership(
+                      owner="project.owner",
+                      current-user="currentUser",
+                      project-id="project.id"
+                    )
+
                 fieldset.looking-for-people
                     .looking-for-people-selector
                         span {{ 'ADMIN.PROJECT_PROFILE.RECRUITING' | translate }}

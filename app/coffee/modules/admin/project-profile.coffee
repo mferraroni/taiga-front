@@ -71,6 +71,7 @@ class ProjectProfileController extends mixOf(taiga.Controller, taiga.PageMixin)
 
             @scope.canBePrivateProject = @.currentUserService.canBePrivateProject(@scope.project.id)
             @scope.canBePublicProject = @.currentUserService.canBePublicProject(@scope.project.id)
+            @scope.currentUser = @.currentUserService.getUser().toJS()
 
             @scope.isPrivateProject = @scope.project.is_private
 
@@ -541,3 +542,21 @@ AdminProjectRestrictionsDirective = () ->
     }
 
 module.directive('tgAdminProjectRestrictions', [AdminProjectRestrictionsDirective])
+
+AdminProjectRequestOwnershipDirective = (lightboxFactory) ->
+    return {
+        link: (scope) ->
+            scope.requestOwnership = () ->
+                lightboxFactory.create("tg-lb-request-ownership", {
+                    "class": "lightbox lightbox-request-ownership"
+                }, {
+                    projectId: scope.projectId
+                })
+
+        scope: {
+            "projectId": "="
+        },
+        templateUrl: "admin/admin-project-request-ownership.html"
+    }
+
+module.directive('tgAdminProjectRequestOwnership', ["tgLightboxFactory", AdminProjectRequestOwnershipDirective])

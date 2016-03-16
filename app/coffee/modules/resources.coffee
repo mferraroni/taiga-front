@@ -77,6 +77,7 @@ urls = {
     "project-transfer-validate-token": "/projects/%s/transfer_validate_token"
     "project-transfer-accept": "/projects/%s/transfer_accept"
     "project-transfer-reject": "/projects/%s/transfer_reject"
+    "project-transfer-request": "/projects/%s/transfer_request"
 
     # Project Values - Choises
     "userstory-statuses": "/userstory-statuses"

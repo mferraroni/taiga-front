@@ -131,6 +131,10 @@ Resource = (urlsService, http, paginateResponseService) ->
         url = urlsService.resolve("project-transfer-reject", projectId)
         return http.post(url, data)
 
+    service.transferRequest = (projectId) ->
+        url = urlsService.resolve("project-transfer-request", projectId)
+        return http.post(url)
+
     return () ->
         return {"projects": service}
 

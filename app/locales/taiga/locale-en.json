@@ -472,7 +472,13 @@
             "MAX_PRIVATE_PROJECTS": "You've reached the maximum number of private projects",
             "MAX_PRIVATE_PROJECTS_MEMBERS": "The project exceeds the maximum members number in private projects",
             "MAX_PUBLIC_PROJECTS": "You've reached the maximum number of public projects",
-            "MAX_PUBLIC_PROJECTS_MEMBERS": "The project exceeds the maximum members number in public projects"
+            "MAX_PUBLIC_PROJECTS_MEMBERS": "The project exceeds the maximum members number in public projects",
+            "PROJECT_OWNER": "Project owner",
+            "REQUEST_OWNERSHIP": "Request ownership",
+            "REQUEST_OWNERSHIP_CONFIRMATION_TITLE": "Do you want to be the project owner?",
+            "REQUEST_OWNERSHIP_DESC": "Ask the owner {{name}} to transfert to you the project ownership.",
+            "REQUEST_OWNERSHIP_BUTTON": "Request",
+            "REQUEST_OWNERSHIP_SUCCESS": "We'll notify the project owner"
         },
         "REPORTS": {
             "TITLE": "Reports",

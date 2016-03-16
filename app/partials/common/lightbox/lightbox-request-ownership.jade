@@ -1,0 +1,14 @@
+a.close(href="", title="{{'COMMON.CLOSE' | translate}}")
+    svg.icon.icon-close
+        use(xlink:href="#icon-close")
+
+.content
+    h2.title {{'ADMIN.PROJECT_PROFILE.REQUEST_OWNERSHIP_CONFIRMATION_TITLE' | translate}}
+    p {{'ADMIN.PROJECT_PROFILE.REQUEST_OWNERSHIP_DESC' | translate}}
+
+    a.button-green(
+        href="",
+        ng-click="request()",
+        tg-loading="loading"
+    )
+        span(translate="ADMIN.PROJECT_PROFILE.REQUEST_OWNERSHIP_BUTTON")

@@ -177,3 +177,28 @@ CreateMembersDirective = ($rs, $rootScope, $confirm, $loading, lightboxService, 
 
 module.directive("tgLbCreateMembers", ["$tgResources", "$rootScope", "$tgConfirm", "$tgLoading",
                                        "lightboxService", "$compile", CreateMembersDirective])
+
+LbRequestOwnershipDirective = (lightboxService, rs, confirmService, $translate) ->
+    return {
+        link: (scope, el) ->
+            lightboxService.open(el)
+
+            scope.request = () ->
+                scope.loading = true
+
+                rs.projects.transferRequest(scope.projectId).then () ->
+                    scope.loading = false
+
+                    lightboxService.close(el)
+
+                    confirmService.notify("success", $translate.instant("ADMIN.PROJECT_PROFILE.REQUEST_OWNERSHIP_SUCCESS"))
+
+        templateUrl: "common/lightbox/lightbox-request-ownership.html"
+    }
+
+module.directive('tgLbRequestOwnership', [
+    "lightboxService",
+    "tgResources",
+    "$tgConfirm",
+    "$translate",
+    LbRequestOwnershipDirective])

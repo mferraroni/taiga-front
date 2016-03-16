@@ -147,3 +147,32 @@ tg-admin-project-restrictions {
         }
     }
 }
+
+
+tg-admin-project-request-ownership {
+    @extend %small;
+    align-items: center;
+    border-top: 1px solid $whitish;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+    a {
+        color: $primary;
+    }
+    img {
+        width: 100%;
+    }
+    .owner-info {
+        padding-left: .5rem;
+        width: 100%;
+    }
+    .owner-avatar {
+        width: 40px;
+    }
+    .owner-name {
+        @extend %bold;
+    }
+    .request-ownership {
+        flex-shrink: 0;
+    }
+}
