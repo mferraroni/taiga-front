@@ -22,8 +22,7 @@ section.custom-fields-table.basic-table
             div(ng-repeat="attr in customAttributes track by attr.id", tg-bind-scope)
                 form.js-form(tg-bind-scope)
                     div.row.single-custom-field.js-view-custom-field
-                        svg.icon.icon-drag
-                            use(xlink:href="#icon-drag")
+                        tg-svg(svg-icon="icon-drag")
                         div.custom-name
                             span {{ attr.name }}
                         div.custom-description
@@ -36,16 +35,17 @@ section.custom-fields-table.basic-table
                             span(ng-switch-when="url", translate="ADMIN.CUSTOM_FIELDS.FIELD_TYPE_URL")
                         div.custom-options
                             div.custom-options-wrapper
-                                svg.js-edit-custom-field-button.icon.icon-edit(
-                                    href=""
+                                a.js-edit-custom-field-button(
+                                    href="",
                                     title="{{'ADMIN.CUSTOM_ATTRIBUTES.EDIT' | translate}}"
                                 )
-                                    use(xlink:href="#icon-edit")
-                                svg.js-delete-custom-field-button.icon.icon-trash(
-                                    href=""
+                                    tg-svg(svg-icon="icon-edit")
+
+                                a.js-delete-custom-field-button(
+                                    href="",
                                     title="{{'ADMIN.CUSTOM_ATTRIBUTES.DELETE' | translate}}"
                                 )
-                                    use(xlink:href="#icon-trash")
+                                    tg-svg(svg-icon="icon-trash")
 
                     div.row.single-custom-field.js-edit-custom-field.hidden
                         fieldset.custom-name
@@ -71,16 +71,17 @@ section.custom-fields-table.basic-table
                             )
                         fieldset.custom-options
                             div.custom-options-wrapper
-                                svg.js-update-custom-field-button.icon.icon-save(
-                                    href=""
+                                a.js-update-custom-field-button(
+                                    href="",
                                     title="{{'ADMIN.CUSTOM_ATTRIBUTES.ACTION_UPDATE' | translate}}"
                                 )
-                                    use(xlink:href="#icon-save")
-                                svg.js-cancel-edit-custom-field-button.icon.icon-close(
-                                    href=""
+                                    tg-svg(svg-icon="icon-save")
+
+                                a.js-cancel-edit-custom-field-button(
+                                    href="",
                                     title="{{'ADMIN.CUSTOM_ATTRIBUTES.ACTION_CANCEL_EDITION' | translate}}"
                                 )
-                                    use(xlink:href="#icon-close")
+                                    tg-svg(svg-icon="icon-close")
 
         form.row.single-custom-field.js-new-custom-field.hidden
             fieldset.custom-name
@@ -108,13 +109,14 @@ section.custom-fields-table.basic-table
 
             fieldset.custom-options
                 div.custom-options-wrapper
-                    svg.js-create-custom-field-button.icon.icon-save(
-                        href=""
+                    a.js-create-custom-field-button(
+                        href="",
                         title="{{'ADMIN.CUSTOM_ATTRIBUTES.SAVE_TITLE' | translate}}"
                     )
-                        use(xlink:href="#icon-save")
-                    svg.js-cancel-new-custom-field-button.icon.icon-trash(
-                        href=""
+                        tg-svg(svg-icon="icon-save")
+
+                    a.js-cancel-new-custom-field-button(
+                        href="",
                         title="{{'ADMIN.CUSTOM_ATTRIBUTES.CANCEL_TITLE' | translate}}"
                     )
-                        use(xlink:href="#icon-trash")
+                        tg-svg(svg-icon="icon-trash")

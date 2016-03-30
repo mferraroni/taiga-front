@@ -11,6 +11,9 @@
         .icon {
             cursor: pointer;
         }
+        .collapse {
+            display: block;
+        }
     }
     .custom-fields-body {
         @include slide(1000px, hidden, $min: 0);

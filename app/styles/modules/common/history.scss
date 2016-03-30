@@ -218,6 +218,7 @@
     .comment-restore {
         @extend %small;
         color: $gray-light;
+        display: block;
         position: absolute;
         right: 0;
         top: .4rem;
@@ -268,15 +269,20 @@
     }
     .comment-delete {
         cursor: pointer;
-        fill: $red-light;
+        display: block;
         opacity: 0;
         position: absolute;
         right: .5rem;
         top: 2rem;
-        transition: all .2s linear;
+        svg {
+            fill: $red-light;
+            transition: all .2s linear;
+        }
         &:hover {
-            fill: $red;
-            transition: color .2s linear;
+            svg {
+                fill: $red;
+                transition: color .2s linear;
+            }
         }
     }
     &.activity {

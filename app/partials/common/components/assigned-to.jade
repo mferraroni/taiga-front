@@ -2,8 +2,7 @@
     img(src!="<%- photo %>", alt!="<%- fullName %>")
     <% if (isIocaine) { %>
     .iocaine-symbol(title="{{ 'TASK.TITLE_ACTION_IOCAINE' | translate }}")
-        svg.icon.icon-iocaine
-            use(xlink:href="#icon-iocaine")
+       tg-svg(svg-icon="icon-iocaine")
     <% }; %>
 
 .assigned-to

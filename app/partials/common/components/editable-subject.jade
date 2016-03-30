@@ -5,5 +5,7 @@
 .edit-subject
     input(type="text", ng-model="item.subject", data-required="true", data-maxlength="500", ng-model-options="{ debounce: 200 }")
     span.save-container
-        svg.save.icon.icon-save(href="", title="{{'COMMON.SAVE' | translate}}")
-            use(xlink:href="#icon-save")
+       tg-svg.save(
+           svg-icon="icon-save"
+           svg-title-translate="COMMON.SAVE"
+        )
